@@ -1,0 +1,16 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+import au.com.bytecode.opencsv.CSVReader;
+
+public class Lecture {
+	public static void main(String[] args) throws IOException {
+		File file = new File("");
+        FileReader fr = new FileReader(file);
+		FileInputStream inputStream = new FileInputStream(new File("select_from_EMB_Madagascar_FR_dbo_Madagascar_France_where_e_comm_201906031057"));
+		CSVReader csvReader = new CSVReader(fr);
+	}
+}
+

@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import au.com.bytecode.opencsv.CSVReader;
+
+public class Lecture {
+	
+	
+
+	
+	
+	public static void main(String[] args) throws IOException {
+		public List<String> ID = new ArrayList<String>();
+		public List<String> domaine;
+		public List<String> Email;
+		public List<String> email_status;
+		public List<String> email_domaine;
+		public List<String> Email_exit;
+		public List<String> Entreprise;
+		public List<String> Entreprise_Clean;
+		public List<String> Adresses;
+		public List<String> Adresses_Clean ;
+
+        BufferedReader br = new BufferedReader(new FileReader("select_from_EMB_Madagascar_FR_dbo_Madagascar_France_where_e_comm_201906031057.csv"));
+        String ligne = null;
+        while ((ligne = br.readLine()) != null)
+         {
+          // Retourner la ligne dans un tableau
+          String[] data = ligne.split(",");
+     
+          // Afficher le contenu du tableau
+          for (String val : data)
+          {
+            ID.add(data[0]);
+          }
+        }
+        br.close();
+
+	}
+}
+

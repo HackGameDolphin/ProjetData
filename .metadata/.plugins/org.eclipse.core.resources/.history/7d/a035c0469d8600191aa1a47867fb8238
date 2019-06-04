@@ -1,0 +1,37 @@
+    
+
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+
+
+public class JsoupTest {
+	
+	public boolean check(String url ,String query) throws IOException {
+		
+        Document doc = Jsoup.connect(url).get();
+        String html = doc.html();
+
+        Pattern pattern = Pattern.compile("Jjkhksj'ai de la chance");
+        Matcher matcher = pattern.matcher(html);
+        
+        if (matcher.find()) {
+            System.out.println("Found it");
+            return true;
+        }else {
+        	System.out.println("Not Found");
+        	return false;
+        }
+
+	}
+	
+    public static void main(String[] args) throws Exception {
+    	
+    	new JsoupTest().check("https://google.com", "J'ai de la chance");
+    	
+    }
+}

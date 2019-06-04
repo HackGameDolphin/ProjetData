@@ -1,0 +1,21 @@
+import com.gargoylesoftware.htmlunit.WebClient;
+
+public class JavascriptTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebClient webClient = new WebClient();
+		webClient.getOptions().setJavaScriptEnabled(true);
+		tring START_URL = "https://www.amazon.fr/";
+		        try {
+		            webClient = new WebClient(BrowserVersion.FIREFOX_45);
+		            HtmlPage page = webClient.getPage(START_URL);
+		            webClient.getOptions().setJavaScriptEnabled(true);
+		            webClient.waitForBackgroundJavaScript(3000);
+		        } catch (IOException ex ) {
+		            ex.printStackTrace();
+		        }
+
+	}
+
+}
