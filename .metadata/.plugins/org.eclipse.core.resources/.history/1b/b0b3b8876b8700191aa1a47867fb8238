@@ -29,8 +29,6 @@ public class JsoupTest {
 	public JsoupTest(String URL) throws IOException {
 		 doc= Jsoup.connect(URL).get();
         html = doc.html();
-        links = new HashSet<String>();
-       
 	}
 	
 	
@@ -56,11 +54,10 @@ public class JsoupTest {
     
     public void getPageLinks(String URL, int depth) {
         if ((!links.contains(URL) && (depth < MAX_DEPTH))) {
-            //System.out.println(">> Depth: " + depth + " [" + URL + "]");
+            System.out.println(">> Depth: " + depth + " [" + URL + "]");
             try {
-                
-                PAGE_NUMBER++;
                 links.add(URL);
+                PAGE_NUMBER++;
                 Document document = Jsoup.connect(URL).get();
                 Elements linksOnPage = document.select("a[href]");
 
@@ -69,7 +66,7 @@ public class JsoupTest {
                     getPageLinks(page.attr("abs:href"), depth);
                 }
             } catch (IOException e) {
-                //System.err.println("For '" + URL + "': " + e.getMessage());
+                System.err.println("For '" + URL + "': " + e.getMessage());
             }
         }
     }

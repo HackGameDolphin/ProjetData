@@ -56,7 +56,7 @@ public class JsoupTest {
     
     public void getPageLinks(String URL, int depth) {
         if ((!links.contains(URL) && (depth < MAX_DEPTH))) {
-            //System.out.println(">> Depth: " + depth + " [" + URL + "]");
+            System.out.println(">> Depth: " + depth + " [" + URL + "]");
             try {
                 
                 PAGE_NUMBER++;
@@ -69,7 +69,7 @@ public class JsoupTest {
                     getPageLinks(page.attr("abs:href"), depth);
                 }
             } catch (IOException e) {
-                //System.err.println("For '" + URL + "': " + e.getMessage());
+                System.err.println("For '" + URL + "': " + e.getMessage());
             }
         }
     }

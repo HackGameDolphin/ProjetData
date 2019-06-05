@@ -61,7 +61,7 @@ public class Lecture {
      
           // Afficher le contenu du tableau
           j++;
-          if(j==100)break;
+          if(j==15)break;
       
           	if(!data[0].equals("822")) {
           		
@@ -73,8 +73,9 @@ public class Lecture {
         		for(String e: plateforme) {
         			
         	if(s.check( e)) {
-        	
-        		platf.get(e).add(data[1]);
+        		System.out.println(e);
+        		System.out.println(data[1]);
+        		//platf.get(e).add(URL.get(i));
         		break;
         	}
         	

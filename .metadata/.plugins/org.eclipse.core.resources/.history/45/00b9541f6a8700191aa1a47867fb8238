@@ -1,0 +1,103 @@
+    
+
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+
+
+public class JsoupTest {
+	String html ;
+	Document doc;
+	 private static final int MAX_DEPTH = 2;
+     private static int PAGE_NUMBER = 0;
+     private HashSet<String> links;
+	public JsoupTest(String URL) throws IOException {
+		 doc= Jsoup.connect(URL).get();
+        html = doc.html();
+        links = new HashSet<String>();
+	}
+	
+	
+	public boolean check(String query) throws IOException {
+		
+     
+		
+        Pattern pattern = Pattern.compile(query);
+        Matcher matcher = pattern.matcher(html);
+        
+        if (matcher.find()) {
+            System.out.println("Found it");
+            return true;
+        }else {
+        	
+        	return false;
+        }
+       
+
+        
+        public void getPageLinks(String URL, int depth) {
+            if ((!links.contains(URL) && (depth < MAX_DEPTH))) {
+                System.out.println(">> Depth: " + depth + " [" + URL + "]");
+                try {
+                    links.add(URL);
+                    PAGE_NUMBER++;
+                    Document document = Jsoup.connect(URL).get();
+                    Elements linksOnPage = document.select("a[href]");
+
+                    depth++;
+                    for (Element page : linksOnPage) {
+                        getPageLinks(page.attr("abs:href"), depth);
+                    }
+                } catch (IOException e) {
+                    System.err.println("For '" + URL + "': " + e.getMessage());
+                }
+            }
+        }
+        
+        public static int getPAGE_NUMBER() {
+    		return PAGE_NUMBER;
+    	}
+
+    	public static void setPAGE_NUMBER(int pAGE_NUMBER) {
+    		PAGE_NUMBER = pAGE_NUMBER;
+    	}
+
+    	public HashSet<String> getLinks() {
+    		return links;
+    	}
+
+    	public void setLinks(HashSet<String> links) {
+    		this.links = links;
+    	}
+
+    	
+    	@Override
+    	public String toString() {
+        	Iterator<String> li = links.iterator();
+        	String str = "";
+        	while(li.hasNext()) {
+        		str = str + li.next() + "\n";
+        	}
+        	return str;
+    	}
+        
+	}
+	
+    
+    	
+    
+}

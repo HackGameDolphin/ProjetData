@@ -3,20 +3,10 @@
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
 
 
 
@@ -29,8 +19,6 @@ public class JsoupTest {
 	public JsoupTest(String URL) throws IOException {
 		 doc= Jsoup.connect(URL).get();
         html = doc.html();
-        links = new HashSet<String>();
-       
 	}
 	
 	
@@ -56,11 +44,10 @@ public class JsoupTest {
     
     public void getPageLinks(String URL, int depth) {
         if ((!links.contains(URL) && (depth < MAX_DEPTH))) {
-            //System.out.println(">> Depth: " + depth + " [" + URL + "]");
+            System.out.println(">> Depth: " + depth + " [" + URL + "]");
             try {
-                
-                PAGE_NUMBER++;
                 links.add(URL);
+                PAGE_NUMBER++;
                 Document document = Jsoup.connect(URL).get();
                 Elements linksOnPage = document.select("a[href]");
 
@@ -69,7 +56,7 @@ public class JsoupTest {
                     getPageLinks(page.attr("abs:href"), depth);
                 }
             } catch (IOException e) {
-                //System.err.println("For '" + URL + "': " + e.getMessage());
+                System.err.println("For '" + URL + "': " + e.getMessage());
             }
         }
     }
@@ -101,7 +88,7 @@ public class JsoupTest {
     	return str;
 	}
 	
-	
+	public static void main(String[] args) {
 	
     
     	

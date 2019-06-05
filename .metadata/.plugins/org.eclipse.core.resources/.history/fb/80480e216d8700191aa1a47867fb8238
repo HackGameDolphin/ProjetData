@@ -17,7 +17,6 @@ import au.com.bytecode.opencsv.CSVReader;
 
 public class Lecture {
 	public static List<String> ID = new ArrayList<String>();
-	
 	public static List<String> URL = new ArrayList<String>();
 	public List<String> domaine;
 	public List<String> Email;
@@ -44,7 +43,6 @@ public class Lecture {
 		plateforme.add("oxatis");
 		
 		Map<String,Set<String>> platf= new HashMap<String,Set<String>>();
-		Map<String, Integer> taille= new HashMap<String,Integer>();
 		platf.put("wix", new HashSet<String>());
 		platf.put("woocommerce", new HashSet<String>());
 		platf.put("magento", new HashSet<String>());
@@ -61,7 +59,6 @@ public class Lecture {
      
           // Afficher le contenu du tableau
           j++;
-          if(j==100)break;
       
           	if(!data[0].equals("822")) {
           		
@@ -73,8 +70,9 @@ public class Lecture {
         		for(String e: plateforme) {
         			
         	if(s.check( e)) {
-        	
-        		platf.get(e).add(data[1]);
+        		System.out.println(e);
+        		System.out.println(data[1]);
+        		//platf.get(e).add(URL.get(i));
         		break;
         	}
         	
@@ -82,15 +80,11 @@ public class Lecture {
         	
         		}s.getPageLinks(data[1], 0);
         		System.out.println(JsoupTest.getPAGE_NUMBER());
-        		taille.put(data[1], JsoupTest.getPAGE_NUMBER());
   }catch ( Exception e){
         	
         }
            
           	}
-        }
-        for(Map.Entry<String,Integer> e : taille.entrySet()) {
-        	System.out.println("url =" +e.getKey()+ " taille ="+e.getValue());
         }
         br.close();
         
