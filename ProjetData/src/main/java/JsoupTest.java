@@ -25,6 +25,7 @@ public class JsoupTest {
 	private static final int MAX_DEPTH = 2;
     private static int PAGE_NUMBER = 0;
     private HashSet<String> links;
+    Elements linksOnPage;
 	Document doc;
 	public JsoupTest(String URL) throws IOException {
 		 doc= Jsoup.connect(URL).get();
@@ -56,13 +57,13 @@ public class JsoupTest {
     
     public void getPageLinks(String URL, int depth) {
         if ((!links.contains(URL) && (depth < MAX_DEPTH))) {
-            //System.out.println(">> Depth: " + depth + " [" + URL + "]");
+            System.out.println(">> Depth: " + depth + " [" + URL + "]");
             try {
                 
                 PAGE_NUMBER++;
                 links.add(URL);
                 Document document = Jsoup.connect(URL).get();
-                Elements linksOnPage = document.select("a[href]");
+              linksOnPage = document.select("a[href]");
 
                 depth++;
                 for (Element page : linksOnPage) {
@@ -100,6 +101,16 @@ public class JsoupTest {
     	}
     	return str;
 	}
+	public static void main(String[] args) throws IOException,java.net.SocketTimeoutException {
+		//http://pontarlier.testoon.com
+		Document document = Jsoup.connect("http://handisport.fanavenue.com").get();
+		Elements linksOnPagea = document.select("a[href*=mentions]");
+		  for (Element page : linksOnPagea) {
+              System.out.println(page.attr("abs:href"));
+          }
+		System.out.println("rien");
+	}
+	
 	
 	
 	

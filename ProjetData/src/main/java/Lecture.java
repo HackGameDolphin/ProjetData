@@ -61,7 +61,7 @@ public class Lecture {
      
           // Afficher le contenu du tableau
           j++;
-          if(j==100)break;
+          if(j==200)break;
       
           	if(!data[0].equals("822")) {
           		
